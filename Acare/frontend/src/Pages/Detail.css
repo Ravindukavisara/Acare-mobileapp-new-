@@ -1,0 +1,59 @@
+.icu-details-table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-top: 50px;
+    margin-left: 120px;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .icu-details-table th, 
+  .icu-details-table td {
+    padding: 12px 15px;
+    text-align: left;
+  }
+  
+  .icu-details-table th {
+    background-color: #a6d1e5;
+    color: rgb(6, 2, 2);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+  
+  .icu-details-table td {
+    background-color: #fff;
+    color: #333;
+    font-size: 14px;
+  }
+  
+  .icu-details-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .icu-details-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .icu-details-table tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+  }
+  
+  .icu-details-table th, 
+  .icu-details-table td {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .icu-details-table th:last-child,
+  .icu-details-table td:last-child {
+    border-right: none;
+  }
+  
+  .icu-details-table th:first-child,
+  .icu-details-table td:first-child {
+    border-left: none;
+  }
+  

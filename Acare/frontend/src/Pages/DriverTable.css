@@ -1,0 +1,44 @@
+.driver-table-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f8f9fa; /* Adjust to your theme */
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .driver-table-container h2 {
+    color: #333; /* Adjust according to theme */
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .driver-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff; /* Adjust to your theme */
+  }
+  
+  .driver-table th, .driver-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .driver-table th {
+    background-color: #007bff; /* Adjust for header color */
+    color: white;
+    font-weight: bold;
+  }
+  
+  .driver-table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Alternate row color */
+  }
+  
+  .driver-table tr:hover {
+    background-color: #ddd; /* Row hover color */
+  }
+  
+  .driver-table td {
+    color: #333; /* Adjust font color as needed */
+  }
+  
