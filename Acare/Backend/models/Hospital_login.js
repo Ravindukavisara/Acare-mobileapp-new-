@@ -8,7 +8,7 @@ const userSchema = new Schema({
     contact: String,
     password: String,
     beds: Number,
-    oxygenCapacity: Number,
+    oxygen: Number,
     theaters: Number,
     ventilators: Number,
 });

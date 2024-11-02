@@ -26,7 +26,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const driverSchema = new mongoose.Schema({
-  driverId: {
+  userId: {
     type: String,
     required: [true, 'Driver ID is required'],
     unique: true,
@@ -37,7 +37,7 @@ const driverSchema = new mongoose.Schema({
     required: [true, 'Hospital ID is required'],
     trim: true
   },
-  fullName: {
+  driver_name: {
     type: String,
     required: [true, 'Full name is required'],
     trim: true
@@ -47,7 +47,7 @@ const driverSchema = new mongoose.Schema({
     trim: true,
     sparse: true
   },
-  mobileNumber: {
+  contact_no: {
     type: String,
     trim: true,
     sparse: true

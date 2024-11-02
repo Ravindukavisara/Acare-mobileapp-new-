@@ -26,6 +26,7 @@ function Header() {
               <li><a href="/Home" onClick={() => setIsOpen(false)}>Home</a></li>
               <li><a href="/ICU List" onClick={() => setIsOpen(false)}>ICU List</a></li>
               <li><a href="/ambulance" onClick={() => setIsOpen(false)}>Ambulance</a></li>
+              <li><a href="/DriverTable" onClick={() => setIsOpen(false)}>Drivers</a></li>
               <li><a href="/location" onClick={() => setIsOpen(false)}>Live Location</a></li>
             </ul>
           </div>

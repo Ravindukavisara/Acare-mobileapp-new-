@@ -32,7 +32,7 @@ router.route("/add").post(async (req, res) => {
             console.log(err);
         });
 });
-
+/*
 // Get All Drivers
 
 router.route("/").get((req, res) => {
@@ -41,6 +41,19 @@ router.route("/").get((req, res) => {
         .catch((err) => {
             console.log(err);
         });
+});*/
+
+router.get("/", async (req, res) => {
+    const { hospitalId } = req.query; // Get hospitalId from query params
+    try {
+        const drivers = hospitalId 
+            ? await Driver.find({ hospitalId }) // Find drivers for specific hospital
+            : await Driver.find(); // Find all drivers if hospitalId is not provided
+        res.json(drivers);
+    } catch (err) {
+        console.error("Error fetching drivers:", err);
+        res.status(500).json({ message: "Error fetching drivers" });
+    }
 });
 
 //update Driver
@@ -104,6 +117,8 @@ router.route("/get/:id").get(async (req, res) => {
                 .send({ status: "Error with get user", error: err.message });
         });
 });
+
+
 
 module.exports = router;
 

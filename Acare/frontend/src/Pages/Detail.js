@@ -1,35 +1,99 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
-import Navbar from '../components/Navbar';
-import './Detail.css';  // Import the CSS file
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { 
+  Building2, 
+  Wind, 
+  Stethoscope, 
+  Hospital
+} from 'lucide-react';
+import axios from 'axios';
+import './Detail.css';
+import Navbar from '../components/Navbar'
 
-export default function Detail() {
-  const location = useLocation();
-  const { name, oxygenCapacity, ventilators, theaters } = location.state || {};
+const StatCard = ({ icon: Icon, label, value, color }) => (
+  <div className="stat-card">
+    <div className="stat-card-content">
+      <div className="stat-card-inner">
+        <div className={`icon-container ${color}`}>
+          <Icon className="stat-icon" />
+        </div>
+        <div className="stat-info">
+          <p className="stat-label">{label}</p>
+          <h3 className="stat-value">{value || 'N/A'}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+const Detail = () => {
+  const [bed, setBed] = useState(0);
+  const [oxygenCapacity, setOxygenCapacity] = useState(0);
+  const [ventilators, setVentilators] = useState(0);
+  const [theater, setTheater] = useState(0);
+  const [HName, setHname] = useState('');
+  const { hospitalName } = useParams();
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.post(`http://localhost:5000/api/Bedavailability/fetchDetails/${hospitalName}`);
+        if (response) {
+          const data = response.data;
+          setBed(data.beds);
+          setVentilators(data.ventilators);
+          setOxygenCapacity(data.oxygen);
+          setTheater(data.theaters);
+          setHname(data.username);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
+    fetchUserData();
+  }, [hospitalName]);
 
   return (
-    <><div className='header'>
-          <Navbar />
-      </div><div>
-              {/* Table for ICU Details */}
-              <table className="icu-details-table">
-                  <thead>
-                      <tr>
-                          <th>ICU Name</th>
-                          <th>Oxygen Capacity</th>
-                          <th>Ventilators</th>
-                          <th>Theaters</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr>
-                          <td>{name}</td>
-                          <td>{oxygenCapacity || 'N/A'}</td>
-                          <td>{ventilators || 'N/A'}</td>
-                          <td>{theaters || 'N/A'}</td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div></>
+    <>
+    <Navbar/>
+    <div className="dashboard-container">
+      <div className="dashboard-content">
+        <div className="dashboard-header">
+          <h1 className="dashboard-title">{HName || 'Hospital Details'}</h1>
+          <p className="dashboard-subtitle">ICU Facility Information Dashboard</p>
+        </div>
+        
+        <div className="stats-grid">
+          <StatCard 
+            icon={Building2}
+            label="ICU Name"
+            value={HName}
+            color="bg-blue"
+          />
+          <StatCard 
+            icon={Wind}
+            label="Oxygen Capacity"
+            value={oxygenCapacity}
+            color="bg-green"
+          />
+          <StatCard 
+            icon={Stethoscope}
+            label="Ventilators"
+            value={ventilators}
+            color="bg-purple"
+          />
+          <StatCard 
+            icon={Hospital}
+            label="Theaters"
+            value={theater}
+            color="bg-orange"
+          />
+        </div>
+      </div>
+    </div>
+    </>
   );
-}
+};
+
+export default Detail;
