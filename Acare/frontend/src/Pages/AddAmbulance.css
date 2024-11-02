@@ -1,0 +1,225 @@
+/*   
+  .add-ambulance-page {
+    min-height: calc(100vh - 60px); Adjust based on your header height 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+  
+  .add-ambulance-container {
+    margin-top: -100px;
+    max-width: 500px;
+    width: 100%;
+    padding: 2rem;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    margin-top: 70px;
+    margin-left: 500px;
+    height: 350px;
+  }
+  
+  .add-ambulance-container h2 {
+    color: var(--dark-blue);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.2rem;
+    color: var(--text-dark);
+    font-weight: 500;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 5px;
+    border: 1px solid var(--light-blue);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-group input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.2);
+  }
+  
+  .submit-button {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 5px;
+    background-color: var(--primary-blue);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: var(--secondary-blue);
+  }
+  
+  @media (max-width: 768px) {
+    .add-ambulance-container {
+      padding: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .add-ambulance-page {
+      padding: 1rem;
+    }
+    
+    .add-ambulance-container {
+      padding: 1rem;
+    }
+  } */
+
+  .add-ambulance-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background-color: #f5f7fb;
+}
+
+.add-ambulance-card {
+    display: flex;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 1000px;
+    overflow: hidden;
+
+    
+}
+
+.form-section {
+    flex: 1;
+    padding: 3rem;
+
+}
+
+.image-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8faff;
+    padding: 2rem;
+}
+
+.side-image {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+h2 {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e1e5ee;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.form-group input::placeholder {
+    color: #aab;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 0.875rem;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+.submit-button:hover {
+    background-color: #357abd;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .add-ambulance-card {
+        flex-direction: column;
+        margin: 1rem;
+    }
+
+    .form-section {
+        padding: 2rem;
+    }
+
+    .image-section {
+        padding: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .add-ambulance-page {
+        padding: 1rem;
+    }
+
+    .form-section {
+        padding: 1.5rem;
+    }
+
+    .image-section {
+        padding: 1rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.25rem;
+    }
+}
