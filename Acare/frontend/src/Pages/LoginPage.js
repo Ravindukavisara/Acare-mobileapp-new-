@@ -19,21 +19,22 @@ function LoginPage() {
         username,
         password,
       });
-
+  
       if (response.data.status === 'SUCCESS') {
-        // Save token in localStorage
+        // Save token, username, and hospitalId in localStorage
         localStorage.setItem('token', response.data.token);
-
+        localStorage.setItem('username', response.data.username);
+        localStorage.setItem('hospitalId', response.data.hospitalId);
+  
         // Handle 'Remember Me' functionality
         if (rememberMe) {
           localStorage.setItem('rememberedUsername', username);
         } else {
           localStorage.removeItem('rememberedUsername');
         }
-
-        // Navigate to the home page and pass the beds and username in state
-        navigate('/Home', { state: { username: response.data.username , beds: response.data.beds,  } });
-        console.log(response.data);
+  
+        // Navigate to the home page
+        navigate('/Home');
       } else {
         setErrorMessage('Login failed. Please try again.');
       }
@@ -41,7 +42,7 @@ function LoginPage() {
       setErrorMessage('An error occurred during sign in. Please try again.');
     }
   };
-
+  
   return (
     <div className='wrapper'>
       <div className='login-container'>

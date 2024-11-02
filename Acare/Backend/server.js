@@ -14,6 +14,7 @@ const notificationRoutes = require('./api/Notification'); // Import notification
 const ventilators = require('./api/Ventilators'); // Import ventilators routes
 const theaters = require('./api/Theater'); // Import theaters routes
 const oxygenRoutes = require('./api/Oxygen'); // Import oxygen routes
+const moreinfoRoutes = require('./api/Moreinfo'); // Import moreinfo routes
 
 const app = express();       //initializes an Express application.
 
@@ -34,8 +35,8 @@ app.use('/api/Icu',IcuRoutes);
 app.use('/api/Notification', notificationRoutes);
 app.use('/api/Theater', theaters);
 app.use('/api/Oxygen', oxygenRoutes);
-const PredefinedAlert = require('./models/PredefineAlert');
-const SentAlert = require('./models/SentAlert');
+app.use('/api/Moreinfo', moreinfoRoutes);
+
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
@@ -43,26 +44,6 @@ mongoose.connect(process.env.MONGODB_URI, {
 })
 .then(() => console.log('MongoDB connected'))
 .catch(err => console.log(err));
-app.get('/predefinedAlerts', async (req, res) => {
-  try {
-    const alerts = await PredefinedAlert.find();
-    res.json(alerts);
-  } catch (error) {
-    console.error("Error retrieving predefined alerts:", error);
-    res.status(500).json({ error: 'Failed to retrieve predefined alerts' });
-  }
-});
-// Endpoint to retrieve sent alerts for the web app
-app.get('/getSentAlerts', async (req, res) => {
-  try {
-    const alerts = await SentAlert.find().sort({ timestamp: -1 });
-    res.json(alerts);
-  } catch (error) {
-    console.error("Error retrieving sent alerts:", error);
-    res.status(500).json({ error: 'Failed to retrieve sent alerts' });
-  }
-});
-
 
 // Start the server
 const port = process.env.PORT || 5000;

@@ -4,18 +4,26 @@ import Navbar from '../components/Navbar';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-
-
 export default function List() {
   const [icuData, setIcuData] = useState([]);
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     const fetchICUData = async () => {
+      const hospitalId = localStorage.getItem('hospitalId');  // Get logged-in hospital ID
+      
       try {
-        const response = await axios.get('http://localhost:5000/api/icu');
-        setIcuData(response.data);
-        console.log('ICU data:', response.data);
+        const response = await axios.get('http://localhost:5000/api/icu', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,  // Include token
+          },
+        });
+
+        // Filter out ICU data for the current logged-in hospital
+        const filteredData = response.data.filter(icu => icu.name !== hospitalId);
+        
+        setIcuData(filteredData);
+        console.log('Filtered ICU data:', filteredData);
       } catch (error) {
         console.error('Error fetching ICU data:', error);
       }
@@ -26,7 +34,11 @@ export default function List() {
 
   const handleRequestBed = async (hospitalId) => {
     try {
-      await axios.put(`http://localhost:5000/api/icu/request-bed/${hospitalId}`);
+      await axios.put(`http://localhost:5000/api/icu/request-bed/${hospitalId}`, {}, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,  // Include token
+        },
+      });
       setIcuData(prevIcus => {
         return prevIcus.map(icu => {
           if (icu.name === hospitalId) {
@@ -39,13 +51,10 @@ export default function List() {
       console.error('Error requesting bed:', error);
     }
   };
-//new
-  const handleViewMore = (icu) => {
-    navigate('/Detail', { state: { ...icu } });
+
+  const handleViewMore = (hospitalName) => {
+    navigate(`/Detail/${hospitalName}`);
   };
-//
-
-
 
   return (
     <>
@@ -57,9 +66,12 @@ export default function List() {
             <div className="icu-header">
               <h3>{icu.availableBeds}</h3>
               
-              <button className="view-more-button"  onClick={() => handleViewMore(icu)}
-              >View More Info</button>
-
+              <button 
+                className="view-more-button"  
+                onClick={() => handleViewMore(icu.name)}
+              >
+                View More Info
+              </button>
             </div>
             <p><strong>Location:</strong> {icu.location}</p>
             <p><strong>Contact:</strong> {icu.contact}</p>
@@ -78,7 +90,7 @@ export default function List() {
                   <td>
                     <button 
                       className="request-bed-button"
-                      onClick={() => handleRequestBed(icu.name)} // Pass hospitalId
+                      onClick={() => handleRequestBed(icu.name)}
                       disabled={icu.availableBeds === 0}
                     >
                       Request Bed

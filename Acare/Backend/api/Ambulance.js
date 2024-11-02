@@ -4,7 +4,7 @@ const Ambulance = require('../models/Ambulance');
 
 // Add Ambulance
 router.post("/add", async (req, res) => {
-  const { Ambulance_no, hospitalId,driverId } = req.body;
+  const { Ambulance_no, hospitalId } = req.body;
 
   try {
     // Check if ambulance already exists
@@ -13,7 +13,7 @@ router.post("/add", async (req, res) => {
       return res.status(400).json({ message: "Ambulance with this number already exists" });
     }
 
-    const newAmbulance = new Ambulance({ Ambulance_no, hospitalId ,driverId});
+    const newAmbulance = new Ambulance({ Ambulance_no, hospitalId });
     await newAmbulance.save();
     return res.status(200).json({ message: "Ambulance added successfully" });
   } catch (err) {
@@ -35,11 +35,11 @@ router.get("/", async (req, res) => {
 
 // Update Ambulance
 router.put("/update/:id", async (req, res) => {
-  const { Ambulance_no, hospitalId ,driverId} = req.body;
+  const { Ambulance_no, hospitalId } = req.body;
   const ambulanceId = req.params.id;
 
   try {
-    const updatedAmbulance = await Ambulance.findByIdAndUpdate(ambulanceId, { Ambulance_no, hospitalId,driverId }, { new: true });
+    const updatedAmbulance = await Ambulance.findByIdAndUpdate(ambulanceId, { Ambulance_no, hospitalId }, { new: true });
     if (!updatedAmbulance) {
       return res.status(404).json({ message: "Ambulance not found" });
     }

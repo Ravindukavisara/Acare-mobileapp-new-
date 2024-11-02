@@ -7,11 +7,11 @@ const router = express.Router();
 // Get ICU data
 router.get('/', async (req, res) => {
   try {
-    const icuData = await Hospital.find({}, 'hospitalId username email beds');
+    const icuData = await Hospital.find({}, 'hospitalId username contact beds');
     const formattedData = icuData.map(icu => ({
       name: icu.hospitalId,
       location: icu.username,
-      contact: icu.email,
+      contact: icu.contact,
       availableBeds: icu.beds,
     }));
     res.json(formattedData);

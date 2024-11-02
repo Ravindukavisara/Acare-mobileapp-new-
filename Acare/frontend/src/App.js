@@ -1,4 +1,3 @@
-
 import './App.css';
 import { BrowserRouter as  Router, Routes, Route  } from 'react-router-dom';
 import About from './Pages/About';
@@ -12,6 +11,7 @@ import AddAmbulance from './Pages/AddAmbulance';
 import AddDrivers from './Pages/AddDrivers';
 import Detail from './Pages/Detail';
 import EmergencyAlertsPage from './Pages/EmergencyAlertsPage';
+import DriverTable from './Pages/DriverTable';
 
 
 
@@ -30,8 +30,9 @@ function App() {
          <Route path='/location' element={<LiveLocation />} />
          <Route path='/AddAmbulance' element={<AddAmbulance />} />
          <Route path='/AddDrivers' element={<AddDrivers />} />
-         <Route path="/Detail" element={<Detail />} />
+         <Route path="/Detail/:hospitalName" element={<Detail />} />
          <Route path="/emergency-alerts" element={<EmergencyAlertsPage  />} />
+         <Route path="/DriverTable" element={<DriverTable />} />
          
       </Routes>
     </div>

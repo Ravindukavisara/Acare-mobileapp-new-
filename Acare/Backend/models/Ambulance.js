@@ -8,13 +8,9 @@ const ambulanceSchema = new Schema({
     },
     hospitalId: {
         type : String,
-        required: true,
+        required: true
         
     
-    },
-    driverId:{
-        type:String,
-        required:true,
     }
 });
 
